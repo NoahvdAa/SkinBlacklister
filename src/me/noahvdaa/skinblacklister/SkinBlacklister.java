@@ -64,7 +64,7 @@ public class SkinBlacklister extends JavaPlugin {
 	        	File f = new File(dataFolderPath);
 	            int count = 0;
 	            for (File file : f.listFiles()) {
-	            	if (file.isFile()) {
+	            	if (file.isFile() && file.getName().endsWith(".png") && !file.getName().startsWith(".")) {
 	                	count++;
 	            	}
 	            }
