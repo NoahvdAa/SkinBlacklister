@@ -1,0 +1,23 @@
+#
+#  ___ _   _      ___ _         _   _ _    _           
+# / __| |_(_)_ _ | _ ) |__ _ __| |_| (_)__| |_ ___ _ _ 
+# \__ \ / / | ' \| _ \ / _` / _| / / | (_-<  _/ -_) '_|
+# |___/_\_\_|_||_|___/_\__,_\__|_\_\_|_/__/\__\___|_|  
+#                                                      
+
+# Place all blackedlisted skin .png files in the folder blacklisted_skins.
+# You don't need to reload to apply the changes to the blacklisted_skins folder.
+# Still confused? Check out the tutorial on the plugin page!
+
+# minMatchRate contains the highest match rate (in percent) before a punishment will be executed.
+# Defaults to 97.5%
+minMatchRate: 97.5
+
+# commandsToExecute contains all the commands that will be executed when a player joins
+# with a blacklisted skin.
+# Placeholders:
+# %playername% - Player name, e.g. Notch.
+# %matchedfile% - File name of the matched skin file, e.g. inapp_skin1.png
+# %differencepercentage% - The percentage of difference the players skin had with the blacklisted skin.
+commandsToExecute:
+  - ban %playername% §bInappropriate Skin §e(%matchedfile%, %differencepercentage%%)
