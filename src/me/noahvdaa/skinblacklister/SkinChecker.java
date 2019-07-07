@@ -62,7 +62,7 @@ public class SkinChecker implements Listener {
 								for (String command : plugin.getConfig().getStringList("commandsToExecute")) {
 									command = command.replaceAll("%playername%", p.getName())
 								    .replaceAll("%matchedfile%", mmn)
-									.replaceAll("%differencepercentage%", mmp);
+									.replaceAll("%matchpercentage%", mmp);
 									
 									Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), command);
 								}

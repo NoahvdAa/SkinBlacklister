@@ -18,6 +18,7 @@ minMatchRate: 97.5
 # Placeholders:
 # %playername% - Player name, e.g. Notch.
 # %matchedfile% - File name of the matched skin file, e.g. inapp_skin1.png
-# %differencepercentage% - The percentage of difference the players skin had with the blacklisted skin.
+# %matchpercentage% - The match percentage the players' skin had with the blacklisted skin.
+# IMPORTANT NOTE: You should NOT show the match percentage to the punished user, as they could adjust their skin based on that.
 commandsToExecute:
-  - ban %playername% §bInappropriate Skin §e(%matchedfile%, %differencepercentage%%)
+  - ban %playername% §bInappropriate Skin §e(%matchedfile%)
