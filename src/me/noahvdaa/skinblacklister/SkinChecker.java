@@ -42,7 +42,7 @@ public class SkinChecker implements Listener {
 				    		  BufferedImage img2 = ImageIO.read(file);
 				    		  Double matchRate = 100-getDifferencePercent(img, img2);
 				    		  
-				    		  if(matchRate > mostMatchPercent) {
+				    		  if(matchRate >= mostMatchPercent) {
 				    			  mostMatchPercent = matchRate;
 					    		  mostMatchName = file.getName();
 				    		  }
