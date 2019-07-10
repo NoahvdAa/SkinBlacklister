@@ -1,6 +1,6 @@
 name: SkinBlacklister
-main: me.noahvdaa.skinblacklister.SkinBlacklister
-version: 1.0.1
+main: me.noahvdaa.skinblacklister.bukkit.SkinBlacklisterBukkit
+version: 1.1.0
 author: NoahvdAa
 api-version: 1.13
 commands:

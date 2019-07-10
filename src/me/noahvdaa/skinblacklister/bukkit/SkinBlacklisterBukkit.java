@@ -1,4 +1,4 @@
-package me.noahvdaa.skinblacklister;
+package me.noahvdaa.skinblacklister.bukkit;
 
 import java.io.File;
 import java.util.concurrent.Callable;
@@ -8,13 +8,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import me.noahvdaa.skinblacklister.Metrics;
+
 import net.md_5.bungee.api.ChatColor;
 
-public class SkinBlacklister extends JavaPlugin {
+public class SkinBlacklisterBukkit extends JavaPlugin {
 	
 	private FileConfiguration config;
-	private Metrics metrics;
+	private MetricsBukkit metrics;
 	private Logger logger;
 	private Double minMatchRate = 97.5;
 	private String dataFolderPath;
@@ -54,11 +54,11 @@ public class SkinBlacklister extends JavaPlugin {
         logger.info("Loaded "+count+" blacklisted skins, with a minimal match rate of "+this.minMatchRate+"%.");
         
         // Register events
-        this.getServer().getPluginManager().registerEvents(new SkinChecker(this), this);
+        this.getServer().getPluginManager().registerEvents(new SkinCheckerBukkit(this), this);
 		
         // Metrics start here.
-		this.metrics = new Metrics(this);
-		this.metrics.addCustomChart(new Metrics.SingleLineChart("blacklisted_skins", new Callable<Integer>() {
+		this.metrics = new MetricsBukkit(this);
+		this.metrics.addCustomChart(new MetricsBukkit.SingleLineChart("blacklisted_skins", new Callable<Integer>() {
 	        @Override
 	        public Integer call() throws Exception {
 	        	File f = new File(dataFolderPath);

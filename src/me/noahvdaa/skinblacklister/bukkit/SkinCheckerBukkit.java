@@ -1,4 +1,4 @@
-package me.noahvdaa.skinblacklister;
+package me.noahvdaa.skinblacklister.bukkit;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -11,11 +11,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-public class SkinChecker implements Listener {
+public class SkinCheckerBukkit implements Listener {
 	
-	private SkinBlacklister plugin;
+	private SkinBlacklisterBukkit plugin;
 	
-	public SkinChecker(SkinBlacklister plugin) {
+	public SkinCheckerBukkit(SkinBlacklisterBukkit plugin) {
 		this.plugin = plugin;
 	}
 	
@@ -23,7 +23,7 @@ public class SkinChecker implements Listener {
 	public void playerJoin(PlayerJoinEvent e)  {
 		Player p = e.getPlayer();
 		if(p.hasPermission("skinblacklister.bypass")) return;
-		plugin.getServer().getScheduler().runTaskLaterAsynchronously(plugin, new Runnable() {
+		plugin.getServer().getScheduler().runTaskAsynchronously(plugin, new Runnable() {
 			  public void run() {
 				  try {
 					  if(!p.isOnline()) return;
@@ -54,7 +54,7 @@ public class SkinChecker implements Listener {
 				     
 				      if(mostMatchPercent > plugin.getConfig().getDouble("minMatchRate", 97.5)) {
 				    	  // Match found!
-				    	  plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
+				    	  plugin.getServer().getScheduler().runTask(plugin, new Runnable() {
 
 							@Override
 							public void run() {
@@ -68,7 +68,7 @@ public class SkinChecker implements Listener {
 								}
 							}
 				    	  
-				    	  }, 1L);
+				    	  });
 				    	  
 				      }
 				      
@@ -77,7 +77,7 @@ public class SkinChecker implements Listener {
 					  // Silently fail.
 				  }
 			  }
-			}, 1L);
+			});
 	}
 	
 	private static double getDifferencePercent(BufferedImage img1, BufferedImage img2) {
