@@ -1,4 +1,4 @@
-package me.noahvdaa.skinblacklister.velocity.listener;
+package me.noahvdaa.skinblacklister.velocity.listeners;
 
 import com.velocitypowered.api.event.EventTask;
 import com.velocitypowered.api.event.Subscribe;

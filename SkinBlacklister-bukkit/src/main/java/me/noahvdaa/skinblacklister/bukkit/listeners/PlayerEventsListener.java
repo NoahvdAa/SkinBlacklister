@@ -1,4 +1,4 @@
-package me.noahvdaa.skinblacklister.bukkit.listener;
+package me.noahvdaa.skinblacklister.bukkit.listeners;
 
 import me.noahvdaa.skinblacklister.bukkit.SkinBlacklisterBukkit;
 import org.bukkit.entity.Player;

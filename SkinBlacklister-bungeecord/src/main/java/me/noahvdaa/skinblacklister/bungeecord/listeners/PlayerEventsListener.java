@@ -1,4 +1,4 @@
-package me.noahvdaa.skinblacklister.bungeecord.listener;
+package me.noahvdaa.skinblacklister.bungeecord.listeners;
 
 import me.noahvdaa.skinblacklister.bungeecord.SkinBlacklisterBungeecord;
 import net.md_5.bungee.api.connection.ProxiedPlayer;

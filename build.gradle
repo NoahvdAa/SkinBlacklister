@@ -46,4 +46,8 @@ subprojects {
     }
 }
 
+shadowJar {
+    relocate 'org.json', 'me.noahvdaa.skinblacklister.libs.json'
+}
+
 tasks.build.dependsOn tasks.shadowJar
