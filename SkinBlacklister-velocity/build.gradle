@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'com.github.johnrengelman.shadow'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'velocitypowered-repo'
+        url = 'https://nexus.velocitypowered.com/repository/maven-public/'
+    }
+}
+
+dependencies {
+    api project(':SkinBlacklister-common')
+    compileOnly 'com.velocitypowered:velocity-api:3.0.0'
+    annotationProcessor 'com.velocitypowered:velocity-api:3.0.0'
+}
+
+def templateSource = file('src/main/templates')
+def templateDest = layout.buildDirectory.dir('generated/sources/templates')
+def generateTemplates = tasks.register('generateTemplates', Copy) { task ->
+    def props = [
+            'version': project.version
+    ]
+    task.inputs.properties props
+
+    task.from templateSource
+    task.into templateDest
+    task.expand props
+}
+
+sourceSets.main.java.srcDir(generateTemplates.map { it.outputs })
+
+rootProject.idea.project.settings.taskTriggers.afterSync generateTemplates
+project.eclipse.synchronizationTasks(generateTemplates)
+
+shadowJar {
+    dependencies {
+        include(dependency(':SkinBlacklister-common'))
+    }
+}
+
+tasks.build.dependsOn tasks.shadowJar

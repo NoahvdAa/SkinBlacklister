@@ -1,0 +1,3 @@
+rootProject.name = 'SkinBlacklister'
+
+include 'SkinBlacklister-common', 'SkinBlacklister-bukkit', 'SkinBlacklister-bungeecord', 'SkinBlacklister-velocity'

@@ -1,0 +1,9 @@
+plugins {
+    id 'com.github.johnrengelman.shadow'
+}
+
+dependencies {
+    implementation 'org.json:json:20210307'
+}
+
+tasks.build.dependsOn tasks.shadowJar

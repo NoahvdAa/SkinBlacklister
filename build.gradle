@@ -1,0 +1,49 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id 'org.jetbrains.gradle.plugin.idea-ext' version '1.0.1'
+    id 'java'
+    id 'java-library'
+}
+
+group = 'me.noahvdaa.skinblacklister'
+version = '1.0.0-SNAPSHOT'
+
+dependencies {
+    implementation project(path: ':SkinBlacklister-bukkit', configuration: 'shadow')
+    implementation project(path: ':SkinBlacklister-bungeecord', configuration: 'shadow')
+    implementation project(path: ':SkinBlacklister-velocity', configuration: 'shadow')
+}
+
+repositories {
+    mavenCentral()
+}
+
+subprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+
+    group = parent.group
+    version = parent.version
+
+    def targetJavaVersion = property('javaVersion') as int
+    java {
+        def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
+        if (JavaVersion.current() < javaVersion) {
+            toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+        }
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+            options.release = targetJavaVersion
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+tasks.build.dependsOn tasks.shadowJar
