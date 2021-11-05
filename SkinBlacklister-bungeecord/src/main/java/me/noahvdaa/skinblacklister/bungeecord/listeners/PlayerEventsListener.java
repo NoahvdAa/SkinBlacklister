@@ -22,6 +22,8 @@ public class PlayerEventsListener implements Listener {
 		plugin.getProxy().getScheduler().runAsync(plugin, () -> {
 			ProxiedPlayer player = event.getPlayer();
 
+			if (player.hasPermission("skinblacklister.bypass")) return;
+
 			byte[] skin;
 			try {
 				skin = plugin.getSkinDownloader().getSkin(player.getUniqueId());

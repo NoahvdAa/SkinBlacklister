@@ -5,3 +5,7 @@ api-version: 1.13
 authors: [ NoahvdAa ]
 description: Blacklist skins you don't want on your Minecraft server!
 website: https://github.com/NoahvdAa/SkinBlacklister
+permissions:
+  skinblacklister.bypass:
+    default: false
+    description: Players with this permission will bypass skin checks.
