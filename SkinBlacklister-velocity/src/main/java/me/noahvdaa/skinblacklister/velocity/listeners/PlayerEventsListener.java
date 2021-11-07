@@ -24,10 +24,13 @@ public class PlayerEventsListener {
 
 			if (player.hasPermission("skinblacklister.bypass")) return;
 
-			byte[] skin;
+			byte[] skin = null;
 			try {
 				skin = plugin.getSkinDownloader().getSkin(player.getUniqueId());
 			} catch (IOException e) {
+				// Swallowed, handled below.
+			}
+			if (skin == null) {
 				// TODO
 				return;
 			}

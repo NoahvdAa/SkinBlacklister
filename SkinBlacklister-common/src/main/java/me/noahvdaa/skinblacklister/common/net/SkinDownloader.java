@@ -16,6 +16,7 @@ public class SkinDownloader {
 
 	public byte[] getSkin(UUID player) throws IOException {
 		URL skinURL = getSkinURL(player);
+		if (skinURL == null) return null;
 		HttpURLConnection con = (HttpURLConnection) skinURL.openConnection();
 		con.setRequestMethod("GET");
 
@@ -43,7 +44,7 @@ public class SkinDownloader {
 		String texturesValue = properties.getJSONObject(0).getString("value");
 		// Decode from the base74 response mojang returns.
 		String texturesDecoded = new String(Base64.getDecoder().decode(texturesValue));
-		JSONObject textures = new JSONObject(texturesDecoded);
+		JSONObject textures = new JSONObject(texturesDecoded).getJSONObject("textures");
 
 		// Using default skin.
 		if (!textures.has("SKIN")) return null;
