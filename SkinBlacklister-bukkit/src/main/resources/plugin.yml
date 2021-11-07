@@ -3,7 +3,7 @@ version: '${version}'
 main: me.noahvdaa.skinblacklister.bukkit.SkinBlacklisterBukkit
 api-version: 1.13
 authors: [ NoahvdAa ]
-description: Blacklist skins you don't want on your Minecraft server!
+description: Blacklist skins you don't want on your server!
 website: https://github.com/NoahvdAa/SkinBlacklister
 permissions:
   skinblacklister.bypass:

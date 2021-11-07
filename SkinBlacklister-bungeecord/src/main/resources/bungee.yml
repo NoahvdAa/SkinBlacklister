@@ -1,4 +1,4 @@
 name: SkinBlacklister
 version: '${version}'
 main: me.noahvdaa.skinblacklister.bungeecord.SkinBlacklisterBungeecord
-description: Blacklist skins you don't want on your Minecraft server! 
+description: Blacklist skins you don't want on your server!

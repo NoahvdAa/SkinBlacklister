@@ -14,7 +14,7 @@ import javax.inject.Inject;
 		id = "skinblacklister",
 		name = "SkinBlacklister",
 		version = BuildConstants.VERSION,
-		description = "Blacklist skins you don't want on your Minecraft server! ",
+		description = "Blacklist skins you don't want on your server!",
 		url = "https://github.com/NoahvdAa/SkinBlacklister",
 		authors = {"NoahvdAa"}
 )
