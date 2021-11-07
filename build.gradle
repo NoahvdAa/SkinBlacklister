@@ -44,6 +44,10 @@ subprojects {
     repositories {
         mavenCentral()
     }
+
+    dependencies {
+        implementation 'org.spongepowered:configurate-hocon:4.0.0'
+    }
 }
 
 shadowJar {
@@ -51,3 +55,5 @@ shadowJar {
 }
 
 tasks.build.dependsOn tasks.shadowJar
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8

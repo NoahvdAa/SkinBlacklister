@@ -5,6 +5,7 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.PostLoginEvent;
 import com.velocitypowered.api.proxy.Player;
 import me.noahvdaa.skinblacklister.velocity.SkinBlacklisterVelocity;
+import net.kyori.adventure.text.Component;
 
 import java.io.IOException;
 
@@ -30,9 +31,15 @@ public class PlayerEventsListener {
 			} catch (IOException e) {
 				// Swallowed, handled below.
 			}
+
+			// They already left!
+			if (!player.isActive()) return;
+
 			if (skin == null) {
-				// TODO
-				return;
+				if (plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailure").getBoolean()) {
+					player.disconnect(Component.text(plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailureReason").getString()));
+					return;
+				}
 			}
 		});
 	}

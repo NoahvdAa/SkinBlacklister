@@ -30,9 +30,16 @@ public class PlayerEventsListener implements Listener {
 			} catch (IOException e) {
 				// Swallowed, handled below.
 			}
+
+			// They already left!
+			if (!player.isOnline()) return;
+
 			if (skin == null) {
-				// TODO
-				return;
+				if (plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailure").getBoolean()) {
+					// We have to kick synchronously!
+					plugin.getServer().getScheduler().runTask(plugin, () -> player.kickPlayer(plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailureReason").getString()));
+					return;
+				}
 			}
 		});
 	}
