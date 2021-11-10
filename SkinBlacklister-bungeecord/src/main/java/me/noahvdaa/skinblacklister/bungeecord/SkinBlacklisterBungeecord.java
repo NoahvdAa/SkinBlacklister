@@ -2,12 +2,15 @@ package me.noahvdaa.skinblacklister.bungeecord;
 
 import me.noahvdaa.skinblacklister.bungeecord.listeners.PlayerEventsListener;
 import me.noahvdaa.skinblacklister.common.SkinBlacklister;
+import net.kyori.adventure.platform.bungeecord.BungeeAudiences;
 import net.md_5.bungee.api.plugin.Plugin;
 import org.bstats.bungeecord.Metrics;
 
 import java.io.IOException;
 
 public final class SkinBlacklisterBungeecord extends Plugin implements SkinBlacklister {
+
+	private BungeeAudiences adventure;
 
 	@Override
 	public void onEnable() {
@@ -20,6 +23,8 @@ public final class SkinBlacklisterBungeecord extends Plugin implements SkinBlack
 			return;
 		}
 
+		adventure = BungeeAudiences.create(this);
+
 		getProxy().getPluginManager().registerListener(this, new PlayerEventsListener(this));
 
 		new Metrics(this, 13228);
@@ -27,7 +32,12 @@ public final class SkinBlacklisterBungeecord extends Plugin implements SkinBlack
 
 	@Override
 	public void onDisable() {
-		// Plugin shutdown logic
+		adventure.close();
+	}
+
+
+	public BungeeAudiences adventure() {
+		return this.adventure;
 	}
 
 }

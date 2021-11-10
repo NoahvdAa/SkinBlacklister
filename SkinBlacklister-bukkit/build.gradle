@@ -17,6 +17,7 @@ repositories {
 dependencies {
     api project(':SkinBlacklister-common')
     implementation 'org.bstats:bstats-bukkit:2.2.1'
+    implementation 'net.kyori:adventure-platform-bukkit:4.0.0'
 
     compileOnly 'com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT'
 }

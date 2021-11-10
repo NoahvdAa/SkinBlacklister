@@ -39,7 +39,7 @@ public class ConfigLoader {
 				childNode.commentIfAbsent("When set to true, players will be kicked if their skin can't be fetched, for the reason specified in KickOnSkinLoadFailureReason.");
 			});
 			node.node("KickOnSkinLoadFailureReason").act(childNode -> {
-				childNode.getString("Your skin can't be fetched. Please try again later!");
+				childNode.getString("<red>Your skin can't be fetched. Please try again later!");
 				childNode.commentIfAbsent("The reason to kick players for if their skin can't be fetched.");
 			});
 		});

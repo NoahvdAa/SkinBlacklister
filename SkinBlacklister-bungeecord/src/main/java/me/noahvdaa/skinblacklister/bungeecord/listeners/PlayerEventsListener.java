@@ -1,6 +1,10 @@
 package me.noahvdaa.skinblacklister.bungeecord.listeners;
 
 import me.noahvdaa.skinblacklister.bungeecord.SkinBlacklisterBungeecord;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.bungeecord.BungeeComponentSerializer;
+import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -36,7 +40,12 @@ public class PlayerEventsListener implements Listener {
 
 			if (skin == null) {
 				if (plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailure").getBoolean()) {
-					player.disconnect(plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailureReason").getString());
+					String kickMessageUnparsed = plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailureReason").getString();
+					Component kickMessage = MiniMessage.get().parse(kickMessageUnparsed);
+					// TODO: Maybe don't use BungeeCord components here?
+					BaseComponent[] kickMessageSerialized = BungeeComponentSerializer.get().serialize(kickMessage);
+
+					player.disconnect(kickMessageSerialized);
 					return;
 				}
 			}

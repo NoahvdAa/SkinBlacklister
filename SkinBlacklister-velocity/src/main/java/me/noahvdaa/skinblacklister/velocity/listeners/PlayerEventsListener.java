@@ -6,6 +6,7 @@ import com.velocitypowered.api.event.connection.PostLoginEvent;
 import com.velocitypowered.api.proxy.Player;
 import me.noahvdaa.skinblacklister.velocity.SkinBlacklisterVelocity;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 
 import java.io.IOException;
 
@@ -37,7 +38,10 @@ public class PlayerEventsListener {
 
 			if (skin == null) {
 				if (plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailure").getBoolean()) {
-					player.disconnect(Component.text(plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailureReason").getString()));
+					String kickMessageUnparsed = plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailureReason").getString();
+					Component kickMessage = MiniMessage.get().parse(kickMessageUnparsed);
+
+					player.disconnect(kickMessage);
 					return;
 				}
 			}
