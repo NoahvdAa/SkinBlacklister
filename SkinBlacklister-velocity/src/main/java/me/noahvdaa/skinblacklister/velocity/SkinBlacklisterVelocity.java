@@ -7,6 +7,7 @@ import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
 import me.noahvdaa.skinblacklister.common.SkinBlacklister;
 import me.noahvdaa.skinblacklister.velocity.listeners.PlayerEventsListener;
+import me.noahvdaa.skinblacklister.velocity.listeners.ProxyEventsListener;
 import org.bstats.velocity.Metrics;
 import org.slf4j.Logger;
 
@@ -49,8 +50,17 @@ public class SkinBlacklisterVelocity implements SkinBlacklister {
 		}
 
 		server.getEventManager().register(this, new PlayerEventsListener(this));
+		server.getEventManager().register(this, new ProxyEventsListener(this));
 
 		metricsFactory.make(this, 13229);
+	}
+
+	public Logger getLogger() {
+		return this.logger;
+	}
+
+	public Path getDataDirectory() {
+		return this.dataDirectory;
 	}
 
 }
