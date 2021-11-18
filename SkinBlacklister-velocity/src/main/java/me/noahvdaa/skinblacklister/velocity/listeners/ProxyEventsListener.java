@@ -34,4 +34,5 @@ public class ProxyEventsListener {
 
 		logger.info("Reloaded SkinBlacklister config!");
 	}
+
 }

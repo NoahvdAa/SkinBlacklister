@@ -61,6 +61,7 @@ shadowJar {
     relocate 'org.spongepowered.configurate', 'me.noahvdaa.skinblacklister.libs.configurate'
     relocate 'com.typesafe.config', 'me.noahvdaa.skinblacklister.libs.configurate.com.typesafe.config'
     relocate 'io.leangen.geantyref', 'me.noahvdaa.skinblacklister.libs.io.leangen.geantyref'
+    relocate 'net.kyori', 'me.noahvdaa.skinblacklister.libs.kyori'
 }
 
 tasks.build.dependsOn tasks.shadowJar
