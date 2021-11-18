@@ -6,14 +6,9 @@ plugins {
 
 repositories {
     mavenCentral()
-    /*maven {
+    maven {
         name = 'velocitypowered-repo'
         url = 'https://nexus.velocitypowered.com/repository/maven-public/'
-    }*/
-    // The velocity repo is currently down, use the paper repo instead.
-    maven {
-        name = 'papermc-repo'
-        url = 'https://papermc.io/repo/repository/maven-public/'
     }
 }
 
