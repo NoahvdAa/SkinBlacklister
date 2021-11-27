@@ -52,7 +52,7 @@ subprojects {
 
     dependencies {
         implementation 'org.spongepowered:configurate-hocon:4.0.0'
-        implementation 'net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT'
+        implementation 'net.kyori:adventure-text-minimessage:4.2.0-SNAPSHOT'
     }
 }
 
