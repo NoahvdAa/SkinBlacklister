@@ -38,12 +38,12 @@ public class PlayerEventsListener {
 
 			if (skin == null) {
 				if (plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailure").getBoolean()) {
-					String kickMessageUnparsed = plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailureReason").getString();
-					Component kickMessage = MiniMessage.get().parse(kickMessageUnparsed);
+					String kickMessageUnparsed = plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailureReason").getString("");
+					Component kickMessage = MiniMessage.miniMessage().parse(kickMessageUnparsed);
 
 					player.disconnect(kickMessage);
-					return;
 				}
+				return;
 			}
 		});
 	}

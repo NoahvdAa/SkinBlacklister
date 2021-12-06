@@ -3,7 +3,6 @@ package me.noahvdaa.skinblacklister.bukkit.listeners;
 import me.noahvdaa.skinblacklister.bukkit.SkinBlacklisterBukkit;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.serializer.bungeecord.BungeeComponentSerializer;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -40,14 +39,14 @@ public class PlayerEventsListener implements Listener {
 
 			if (skin == null) {
 				if (plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailure").getBoolean()) {
-					String kickMessageUnparsed = plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailureReason").getString();
-					Component kickMessage = MiniMessage.get().parse(kickMessageUnparsed);
+					String kickMessageUnparsed = plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailureReason").getString("");
+					Component kickMessage = MiniMessage.miniMessage().parse(kickMessageUnparsed);
 					// TODO: Don't use leg*cy serializer.
 					String serializedKickMessage = LegacyComponentSerializer.legacySection().serialize(kickMessage);
 					// We have to kick synchronously!
 					plugin.getServer().getScheduler().runTask(plugin, () -> player.kickPlayer(serializedKickMessage));
-					return;
 				}
+				return;
 			}
 		});
 	}

@@ -1,6 +1,6 @@
 plugins {
     id 'com.github.johnrengelman.shadow'
-    id 'xyz.jpenilla.run-paper' version '1.0.4'
+    id 'xyz.jpenilla.run-paper' version '1.0.5'
 }
 
 repositories {
@@ -39,7 +39,7 @@ shadowJar {
 }
 
 tasks.runServer {
-    minecraftVersion('1.17.1')
+    minecraftVersion('1.18')
 }
 
 tasks.build.dependsOn tasks.shadowJar

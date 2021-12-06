@@ -40,14 +40,14 @@ public class PlayerEventsListener implements Listener {
 
 			if (skin == null) {
 				if (plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailure").getBoolean()) {
-					String kickMessageUnparsed = plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailureReason").getString();
-					Component kickMessage = MiniMessage.get().parse(kickMessageUnparsed);
+					String kickMessageUnparsed = plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailureReason").getString("");
+					Component kickMessage = MiniMessage.miniMessage().parse(kickMessageUnparsed);
 					// TODO: Maybe don't use BungeeCord components here?
 					BaseComponent[] kickMessageSerialized = BungeeComponentSerializer.get().serialize(kickMessage);
 
 					player.disconnect(kickMessageSerialized);
-					return;
 				}
+				return;
 			}
 		});
 	}
