@@ -18,7 +18,7 @@ public class ProxyEventsListener {
 
 	@Subscribe
 	public void onProxyReload(ProxyReloadEvent event) {
-		ConfigLoader configLoader = plugin.getConfigLoader();
+		ConfigLoader configLoader = plugin.configLoader();
 		Logger logger = plugin.getLogger();
 
 		logger.info("Reloading SkinBlacklister config...");

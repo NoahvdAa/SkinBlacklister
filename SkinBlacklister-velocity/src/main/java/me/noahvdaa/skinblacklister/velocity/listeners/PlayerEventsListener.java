@@ -4,6 +4,7 @@ import com.velocitypowered.api.event.EventTask;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.PostLoginEvent;
 import com.velocitypowered.api.proxy.Player;
+import me.noahvdaa.skinblacklister.common.net.SkinDownloader;
 import me.noahvdaa.skinblacklister.velocity.SkinBlacklisterVelocity;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -28,7 +29,7 @@ public class PlayerEventsListener {
 
 			byte[] skin = null;
 			try {
-				skin = plugin.getSkinDownloader().getSkin(player.getUniqueId());
+				skin = SkinDownloader.getSkin(player.getUniqueId());
 			} catch (IOException e) {
 				// Swallowed, handled below.
 			}
@@ -37,8 +38,8 @@ public class PlayerEventsListener {
 			if (!player.isActive()) return;
 
 			if (skin == null) {
-				if (plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailure").getBoolean()) {
-					String kickMessageUnparsed = plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailureReason").getString("");
+				if (plugin.configLoader().config().node("Checking").node("KickOnSkinLoadFailure").getBoolean()) {
+					String kickMessageUnparsed = plugin.configLoader().config().node("Checking").node("KickOnSkinLoadFailureReason").getString("");
 					Component kickMessage = MiniMessage.miniMessage().parse(kickMessageUnparsed);
 
 					player.disconnect(kickMessage);

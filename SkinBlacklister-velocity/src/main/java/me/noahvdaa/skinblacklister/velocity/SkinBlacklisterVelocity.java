@@ -12,6 +12,7 @@ import org.bstats.velocity.Metrics;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -41,13 +42,15 @@ public class SkinBlacklisterVelocity implements SkinBlacklister {
 	@Subscribe
 	public void onProxyInitialization(ProxyInitializeEvent event) {
 		try {
-			getConfigLoader().loadConfig(dataDirectory);
-			getConfigLoader().saveConfig();
+			configLoader().loadConfig(dataDirectory);
+			configLoader().saveConfig();
 		} catch (IOException e) {
 			logger.warn("Failed to load config:");
 			e.printStackTrace();
 			return;
 		}
+
+		skinMatcher().loadSkins(new File(dataDirectory.toFile(), "skins"), null); // TODO: Set correct logger.
 
 		server.getEventManager().register(this, new PlayerEventsListener(this));
 		server.getEventManager().register(this, new ProxyEventsListener(this));

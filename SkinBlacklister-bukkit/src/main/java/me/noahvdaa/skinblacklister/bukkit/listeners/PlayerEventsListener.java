@@ -1,6 +1,7 @@
 package me.noahvdaa.skinblacklister.bukkit.listeners;
 
 import me.noahvdaa.skinblacklister.bukkit.SkinBlacklisterBukkit;
+import me.noahvdaa.skinblacklister.common.net.SkinDownloader;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
@@ -29,7 +30,7 @@ public class PlayerEventsListener implements Listener {
 
 			byte[] skin = null;
 			try {
-				skin = plugin.getSkinDownloader().getSkin(player.getUniqueId());
+				skin = SkinDownloader.getSkin(player.getUniqueId());
 			} catch (IOException e) {
 				// Swallowed, handled below.
 			}
@@ -38,8 +39,8 @@ public class PlayerEventsListener implements Listener {
 			if (!player.isOnline()) return;
 
 			if (skin == null) {
-				if (plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailure").getBoolean()) {
-					String kickMessageUnparsed = plugin.getConfigLoader().getConfig().node("Checking").node("KickOnSkinLoadFailureReason").getString("");
+				if (plugin.configLoader().config().node("Checking").node("KickOnSkinLoadFailure").getBoolean()) {
+					String kickMessageUnparsed = plugin.configLoader().config().node("Checking").node("KickOnSkinLoadFailureReason").getString("");
 					Component kickMessage = MiniMessage.miniMessage().parse(kickMessageUnparsed);
 					// TODO: Don't use leg*cy serializer.
 					String serializedKickMessage = LegacyComponentSerializer.legacySection().serialize(kickMessage);

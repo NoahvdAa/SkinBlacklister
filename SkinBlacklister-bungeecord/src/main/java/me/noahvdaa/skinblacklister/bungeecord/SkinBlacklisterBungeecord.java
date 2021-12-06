@@ -6,6 +6,7 @@ import net.kyori.adventure.platform.bungeecord.BungeeAudiences;
 import net.md_5.bungee.api.plugin.Plugin;
 import org.bstats.bungeecord.Metrics;
 
+import java.io.File;
 import java.io.IOException;
 
 public final class SkinBlacklisterBungeecord extends Plugin implements SkinBlacklister {
@@ -15,13 +16,15 @@ public final class SkinBlacklisterBungeecord extends Plugin implements SkinBlack
 	@Override
 	public void onEnable() {
 		try {
-			getConfigLoader().loadConfig(this.getDataFolder().toPath());
-			getConfigLoader().saveConfig();
+			configLoader().loadConfig(this.getDataFolder().toPath());
+			configLoader().saveConfig();
 		} catch (IOException e) {
 			getLogger().warning("Failed to load config:");
 			e.printStackTrace();
 			return;
 		}
+
+		skinMatcher().loadSkins(new File(this.getDataFolder(), "skins"), getLogger());
 
 		adventure = BungeeAudiences.create(this);
 

@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class SkinDownloader {
 
-	public byte[] getSkin(UUID player) throws IOException {
+	public static byte[] getSkin(UUID player) throws IOException {
 		URL skinURL = getSkinURL(player);
 		if (skinURL == null) return null;
 		HttpURLConnection con = (HttpURLConnection) skinURL.openConnection();
@@ -26,7 +26,7 @@ public class SkinDownloader {
 		return buffer;
 	}
 
-	public URL getSkinURL(UUID player) throws IOException {
+	public static URL getSkinURL(UUID player) throws IOException {
 		URL url = new URL("https://sessionserver.mojang.com/session/minecraft/profile/" + player.toString());
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");

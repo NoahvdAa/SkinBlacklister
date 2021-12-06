@@ -45,7 +45,7 @@ public class ConfigLoader {
 		});
 	}
 
-	public CommentedConfigurationNode getConfig() {
+	public CommentedConfigurationNode config() {
 		return this.config;
 	}
 
