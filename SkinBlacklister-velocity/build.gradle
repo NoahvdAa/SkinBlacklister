@@ -7,8 +7,8 @@ plugins {
 repositories {
     mavenCentral()
     maven {
-        name = 'velocitypowered-repo'
-        url = 'https://nexus.velocitypowered.com/repository/maven-public/'
+        name = 'papermc-repo'
+        url = 'https://papermc.io/repo/repository/maven-public/'
     }
 }
 
